@@ -128,12 +128,25 @@ Blockly.FieldDropdown.prototype.showEditor_ = function() {
   for (var x = 0; x < options.length; x++) {
     var text = options[x][0];  // Human-readable text.
     var value = options[x][1]; // Language-neutral value.
+    var image;
+    if (options[x].length = 3){
+      image = options[x][2];
+    }
     var menuItem = new goog.ui.MenuItem(text);
     menuItem.setRightToLeft(this.sourceBlock_.RTL);
     menuItem.setValue(value);
     menuItem.setCheckable(true);
     menu.addChild(menuItem, true);
     menuItem.setChecked(value == this.value_);
+
+    if(image && menuItem.element_ && menuItem.element_.innerHTML){
+
+      var imgHtml = '<div style="right: 20px; position:absolute; height:20px; width:20px;vertical-align: middle;"><img style="margin-bottom:-12px" src="../../media/' + image +'"></div>';
+
+      var innerElement = menuItem.element_.firstElementChild;
+      innerElement.innerHTML = innerElement.innerHTML + imgHtml;
+
+    }
   }
   // Listen for mouse/keyboard events.
   goog.events.listen(menu, goog.ui.Component.EventType.ACTION, callback);
@@ -288,6 +301,7 @@ Blockly.FieldDropdown.prototype.setValue = function(newValue) {
  * @param {?string} text New text.
  */
 Blockly.FieldDropdown.prototype.setText = function(text) {
+  
   if (this.sourceBlock_ && this.arrow_) {
     // Update arrow's colour.
     this.arrow_.style.fill = this.sourceBlock_.getColour();

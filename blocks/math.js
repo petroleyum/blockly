@@ -121,11 +121,11 @@ Blockly.Blocks['math_single'] = {
           "type": "field_dropdown",
           "name": "OP",
           "options": [
-            [Blockly.Msg.MATH_SINGLE_OP_ROOT, 'ROOT'],
-            [Blockly.Msg.MATH_SINGLE_OP_ABSOLUTE, 'ABS'],
-            ['-', 'NEG'],
-            ['ln', 'LN'],
-            ['log10', 'LOG10'],
+            [Blockly.Msg.MATH_SINGLE_OP_ROOT, 'ROOT', 'highres-logo_20.png'],
+            [Blockly.Msg.MATH_SINGLE_OP_ABSOLUTE, 'ABS', 'highres-logo_20.png'],
+            ['-', 'NEG', 'highres-logo_20.png'],
+            ['ln', 'LN', 'highres-logo_20.png'],
+            ['log10', 'LOG10', 'highres-logo_20.png'],
             ['e^', 'EXP'],
             ['10^', 'POW10']
           ]
