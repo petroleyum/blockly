@@ -27,7 +27,8 @@
   <p>&rarr; More info on <a href="https://developers.google.com/blockly/installation/code-generators">Code Generators</a>&hellip;</p>
 
   <p>
-    <button onclick="showCode()">Show Python</button>
+    <button onclick="showCode(false)">Show Python</button>
+    <button onclick="showCode(true)">Show Debug</button>
     <button onclick="runCode()">Run Python</button>
   </p>
 
@@ -119,8 +120,9 @@
     Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
                                workspace);
 
-    function showCode() {
+    function showCode(debug) {
       // Generate Python code and display it.
+      Blockly.Python.OUTPUT_DEBUG = debug;
       Blockly.Python.INFINITE_LOOP_TRAP = null;
       var code = Blockly.Python.workspaceToCode(workspace);
       alert(code);

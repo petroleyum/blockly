@@ -71,6 +71,14 @@ Blockly.Generator.prototype.STATEMENT_PREFIX = null;
 Blockly.Generator.prototype.INDENT = '  ';
 
 /**
+ * Should the generator output debug info for the compiler
+ * Should be true for compiling, false for copying and pasting code generated
+ * by Blockly.
+ * @type {boolean}
+ */
+Blockly.Generator.prototype.OUTPUT_DEBUG = true;
+
+/**
  * Generate code for all blocks in the workspace to the specified language.
  * @param {Blockly.Workspace} workspace Workspace to generate code from.
  * @return {string} Generated code.
