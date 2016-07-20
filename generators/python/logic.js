@@ -29,7 +29,7 @@ goog.provide('Blockly.Python.logic');
 goog.require('Blockly.Python');
 
 
-Blockly.Python['controls_if'] = function(block) {
+Blockly.Python.makeBlock('controls_if', function(block) {
   // If/elseif/else condition.
   var n = 0;
   var argument = Blockly.Python.valueToCode(block, 'IF' + n,
@@ -50,9 +50,9 @@ Blockly.Python['controls_if'] = function(block) {
     code += 'else:\n' + branch;
   }
   return code;
-};
+});
 
-Blockly.Python['logic_compare'] = function(block) {
+Blockly.Python.makeBlock('logic_compare', function(block) {
   // Comparison operator.
   var OPERATORS = {
     'EQ': '==',
@@ -68,9 +68,9 @@ Blockly.Python['logic_compare'] = function(block) {
   var argument1 = Blockly.Python.valueToCode(block, 'B', order) || '0';
   var code = argument0 + ' ' + operator + ' ' + argument1;
   return [code, order];
-};
+});
 
-Blockly.Python['logic_operation'] = function(block) {
+Blockly.Python.makeBlock('logic_operation', function(block) {
   // Operations 'and', 'or'.
   var operator = (block.getFieldValue('OP') == 'AND') ? 'and' : 'or';
   var order = (operator == 'and') ? Blockly.Python.ORDER_LOGICAL_AND :
@@ -93,28 +93,28 @@ Blockly.Python['logic_operation'] = function(block) {
   }
   var code = argument0 + ' ' + operator + ' ' + argument1;
   return [code, order];
-};
+});
 
-Blockly.Python['logic_negate'] = function(block) {
+Blockly.Python.makeBlock('logic_negate', function(block) {
   // Negation.
   var argument0 = Blockly.Python.valueToCode(block, 'BOOL',
       Blockly.Python.ORDER_LOGICAL_NOT) || 'True';
   var code = 'not ' + argument0;
   return [code, Blockly.Python.ORDER_LOGICAL_NOT];
-};
+});
 
-Blockly.Python['logic_boolean'] = function(block) {
+Blockly.Python.makeBlock('logic_boolean', function(block) {
   // Boolean values true and false.
   var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'True' : 'False';
   return [code, Blockly.Python.ORDER_ATOMIC];
-};
+});
 
-Blockly.Python['logic_null'] = function(block) {
+Blockly.Python.makeBlock('logic_null', function(block) {
   // Null data type.
   return ['None', Blockly.Python.ORDER_ATOMIC];
-};
+});
 
-Blockly.Python['logic_ternary'] = function(block) {
+Blockly.Python.makeBlock('logic_ternary', function(block) {
   // Ternary operator.
   var value_if = Blockly.Python.valueToCode(block, 'IF',
       Blockly.Python.ORDER_CONDITIONAL) || 'False';
@@ -124,4 +124,4 @@ Blockly.Python['logic_ternary'] = function(block) {
       Blockly.Python.ORDER_CONDITIONAL) || 'None';
   var code = value_then + ' if ' + value_if + ' else ' + value_else;
   return [code, Blockly.Python.ORDER_CONDITIONAL];
-};
+});

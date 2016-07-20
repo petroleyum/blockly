@@ -29,12 +29,12 @@ goog.provide('Blockly.Python.lists');
 goog.require('Blockly.Python');
 
 
-Blockly.Python['lists_create_empty'] = function(block) {
+Blockly.Python.makeBlock('lists_create_empty', function(block) {
   // Create an empty list.
   return ['[]', Blockly.Python.ORDER_ATOMIC];
-};
+});
 
-Blockly.Python['lists_create_with'] = function(block) {
+Blockly.Python.makeBlock('lists_create_with', function(block) {
   // Create a list with any number of elements of any type.
   var code = new Array(block.itemCount_);
   for (var n = 0; n < block.itemCount_; n++) {
@@ -43,9 +43,9 @@ Blockly.Python['lists_create_with'] = function(block) {
   }
   code = '[' + code.join(', ') + ']';
   return [code, Blockly.Python.ORDER_ATOMIC];
-};
+});
 
-Blockly.Python['lists_repeat'] = function(block) {
+Blockly.Python.makeBlock('lists_repeat', function(block) {
   // Create a list with one element repeated.
   var argument0 = Blockly.Python.valueToCode(block, 'ITEM',
       Blockly.Python.ORDER_NONE) || 'None';
@@ -53,24 +53,24 @@ Blockly.Python['lists_repeat'] = function(block) {
       Blockly.Python.ORDER_MULTIPLICATIVE) || '0';
   var code = '[' + argument0 + '] * ' + argument1;
   return [code, Blockly.Python.ORDER_MULTIPLICATIVE];
-};
+});
 
-Blockly.Python['lists_length'] = function(block) {
+Blockly.Python.makeBlock('lists_length', function(block) {
   // String or array length.
   var argument0 = Blockly.Python.valueToCode(block, 'VALUE',
       Blockly.Python.ORDER_NONE) || '[]';
   return ['len(' + argument0 + ')', Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});
 
-Blockly.Python['lists_isEmpty'] = function(block) {
+Blockly.Python.makeBlock('lists_isEmpty', function(block) {
   // Is the string null or array empty?
   var argument0 = Blockly.Python.valueToCode(block, 'VALUE',
       Blockly.Python.ORDER_NONE) || '[]';
   var code = 'not len(' + argument0 + ')';
   return [code, Blockly.Python.ORDER_LOGICAL_NOT];
-};
+});
 
-Blockly.Python['lists_indexOf'] = function(block) {
+Blockly.Python.makeBlock('lists_indexOf', function(block) {
   // Find an item in the list.
   var argument0 = Blockly.Python.valueToCode(block, 'FIND',
       Blockly.Python.ORDER_NONE) || '[]';
@@ -96,9 +96,9 @@ Blockly.Python['lists_indexOf'] = function(block) {
     code = functionName + '(' + argument1 + ', ' + argument0 + ')';
     return [code, Blockly.Python.ORDER_FUNCTION_CALL];
   }
-};
+});
 
-Blockly.Python['lists_getIndex'] = function(block) {
+Blockly.Python.makeBlock('lists_getIndex', function(block) {
   // Get element at index.
   // Note: Until January 2013 this block did not have MODE or WHERE inputs.
   var mode = block.getFieldValue('MODE') || 'GET';
@@ -184,9 +184,9 @@ Blockly.Python['lists_getIndex'] = function(block) {
     }
   }
   throw 'Unhandled combination (lists_getIndex).';
-};
+});
 
-Blockly.Python['lists_setIndex'] = function(block) {
+Blockly.Python.makeBlock('lists_setIndex', function(block) {
   // Set element at index.
   // Note: Until February 2013 this block did not have MODE or WHERE inputs.
   var list = Blockly.Python.valueToCode(block, 'LIST',
@@ -256,9 +256,9 @@ Blockly.Python['lists_setIndex'] = function(block) {
     }
   }
   throw 'Unhandled combination (lists_setIndex).';
-};
+});
 
-Blockly.Python['lists_getSublist'] = function(block) {
+Blockly.Python.makeBlock('lists_getSublist', function(block) {
   // Get sublist.
   var list = Blockly.Python.valueToCode(block, 'LIST',
       Blockly.Python.ORDER_MEMBER) || '[]';
@@ -310,9 +310,9 @@ Blockly.Python['lists_getSublist'] = function(block) {
   }
   var code = list + '[' + at1 + ' : ' + at2 + ']';
   return [code, Blockly.Python.ORDER_MEMBER];
-};
+});
 
-Blockly.Python['lists_sort'] = function(block) {
+Blockly.Python.makeBlock('lists_sort', function(block) {
   // Block for sorting a list.
   var listCode = (Blockly.Python.valueToCode(block, 'LIST', 
       Blockly.Python.ORDER_MEMBER) || '[]');
@@ -339,9 +339,9 @@ Blockly.Python['lists_sort'] = function(block) {
   var code = sortFunctionName + 
       '(' + listCode + ', "' + type + '", ' + reverse + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});
 
-Blockly.Python['lists_split'] = function(block) {
+Blockly.Python.makeBlock('lists_split', function(block) {
   // Block for splitting text into a list, or joining a list into text.
   var mode = block.getFieldValue('MODE');
   if (mode == 'SPLIT') {
@@ -360,4 +360,4 @@ Blockly.Python['lists_split'] = function(block) {
     throw 'Unknown mode: ' + mode;
   }
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});

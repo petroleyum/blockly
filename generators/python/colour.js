@@ -29,20 +29,20 @@ goog.provide('Blockly.Python.colour');
 goog.require('Blockly.Python');
 
 
-Blockly.Python['colour_picker'] = function(block) {
+Blockly.Python.makeBlock('colour_picker', function(block) {
   // Colour picker.
   var code = '\'' + block.getFieldValue('COLOUR') + '\'';
   return [code, Blockly.Python.ORDER_ATOMIC];
-};
+});
 
-Blockly.Python['colour_random'] = function(block) {
+Blockly.Python.makeBlock('colour_random', function(block) {
   // Generate a random colour.
   Blockly.Python.definitions_['import_random'] = 'import random';
   var code = '\'#%06x\' % random.randint(0, 2**24 - 1)';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});
 
-Blockly.Python['colour_rgb'] = function(block) {
+Blockly.Python.makeBlock('colour_rgb', function(block) {
   // Compose a colour from RGB components expressed as percentages.
   var functionName = Blockly.Python.provideFunction_(
       'colour_rgb',
@@ -59,9 +59,9 @@ Blockly.Python['colour_rgb'] = function(block) {
                                      Blockly.Python.ORDER_NONE) || 0;
   var code = functionName + '(' + r + ', ' + g + ', ' + b + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});
 
-Blockly.Python['colour_blend'] = function(block) {
+Blockly.Python.makeBlock('colour_blend', function(block) {
   // Blend two colours together.
   var functionName = Blockly.Python.provideFunction_(
       'colour_blend',
@@ -83,4 +83,4 @@ Blockly.Python['colour_blend'] = function(block) {
       Blockly.Python.ORDER_NONE) || 0;
   var code = functionName + '(' + colour1 + ', ' + colour2 + ', ' + ratio + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});

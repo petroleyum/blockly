@@ -29,13 +29,13 @@ goog.provide('Blockly.Python.texts');
 goog.require('Blockly.Python');
 
 
-Blockly.Python['text'] = function(block) {
+Blockly.Python.makeBlock('text', function(block) {
   // Text value.
   var code = Blockly.Python.quote_(block.getFieldValue('TEXT'));
   return [code, Blockly.Python.ORDER_ATOMIC];
-};
+});
 
-Blockly.Python['text_join'] = function(block) {
+Blockly.Python.makeBlock('text_join', function(block) {
   // Create a string made up of any number of elements of any type.
   //Should we allow joining by '-' or ',' or any other characters?
   var code;
@@ -65,33 +65,33 @@ Blockly.Python['text_join'] = function(block) {
         code.join(', ') + ']])';
     return [code, Blockly.Python.ORDER_FUNCTION_CALL];
   }
-};
+});
 
-Blockly.Python['text_append'] = function(block) {
+Blockly.Python.makeBlock('text_append', function(block) {
   // Append to a variable in place.
   var varName = Blockly.Python.variableDB_.getName(block.getFieldValue('VAR'),
       Blockly.Variables.NAME_TYPE);
   var argument0 = Blockly.Python.valueToCode(block, 'TEXT',
       Blockly.Python.ORDER_NONE) || '\'\'';
   return varName + ' = str(' + varName + ') + str(' + argument0 + ')\n';
-};
+});
 
-Blockly.Python['text_length'] = function(block) {
+Blockly.Python.makeBlock('text_length', function(block) {
   // Is the string null or array empty?
   var argument0 = Blockly.Python.valueToCode(block, 'VALUE',
       Blockly.Python.ORDER_NONE) || '\'\'';
   return ['len(' + argument0 + ')', Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});
 
-Blockly.Python['text_isEmpty'] = function(block) {
+Blockly.Python.makeBlock('text_isEmpty', function(block) {
   // Is the string null or array empty?
   var argument0 = Blockly.Python.valueToCode(block, 'VALUE',
       Blockly.Python.ORDER_NONE) || '\'\'';
   var code = 'not len(' + argument0 + ')';
   return [code, Blockly.Python.ORDER_LOGICAL_NOT];
-};
+});
 
-Blockly.Python['text_indexOf'] = function(block) {
+Blockly.Python.makeBlock('text_indexOf', function(block) {
   // Search the text for a substring.
   // Should we allow for non-case sensitive???
   var operator = block.getFieldValue('END') == 'FIRST' ? 'find' : 'rfind';
@@ -101,9 +101,9 @@ Blockly.Python['text_indexOf'] = function(block) {
       Blockly.Python.ORDER_MEMBER) || '\'\'';
   var code = argument1 + '.' + operator + '(' + argument0 + ') + 1';
   return [code, Blockly.Python.ORDER_MEMBER];
-};
+});
 
-Blockly.Python['text_charAt'] = function(block) {
+Blockly.Python.makeBlock('text_charAt', function(block) {
   // Get letter at index.
   // Note: Until January 2013 this block did not have the WHERE input.
   var where = block.getFieldValue('WHERE') || 'FROM_START';
@@ -143,9 +143,9 @@ Blockly.Python['text_charAt'] = function(block) {
       return [code, Blockly.Python.ORDER_FUNCTION_CALL];
   }
   throw 'Unhandled option (text_charAt).';
-};
+});
 
-Blockly.Python['text_getSubstring'] = function(block) {
+Blockly.Python.makeBlock('text_getSubstring', function(block) {
   // Get substring.
   var text = Blockly.Python.valueToCode(block, 'STRING',
       Blockly.Python.ORDER_MEMBER) || '\'\'';
@@ -197,9 +197,9 @@ Blockly.Python['text_getSubstring'] = function(block) {
   }
   var code = text + '[' + at1 + ' : ' + at2 + ']';
   return [code, Blockly.Python.ORDER_MEMBER];
-};
+});
 
-Blockly.Python['text_changeCase'] = function(block) {
+Blockly.Python.makeBlock('text_changeCase', function(block) {
   // Change capitalization.
   var OPERATORS = {
     'UPPERCASE': '.upper()',
@@ -211,9 +211,9 @@ Blockly.Python['text_changeCase'] = function(block) {
       Blockly.Python.ORDER_MEMBER) || '\'\'';
   var code = argument0 + operator;
   return [code, Blockly.Python.ORDER_MEMBER];
-};
+});
 
-Blockly.Python['text_trim'] = function(block) {
+Blockly.Python.makeBlock('text_trim', function(block) {
   // Trim spaces.
   var OPERATORS = {
     'LEFT': '.lstrip()',
@@ -225,16 +225,16 @@ Blockly.Python['text_trim'] = function(block) {
       Blockly.Python.ORDER_MEMBER) || '\'\'';
   var code = argument0 + operator;
   return [code, Blockly.Python.ORDER_MEMBER];
-};
+});
 
-Blockly.Python['text_print'] = function(block) {
+Blockly.Python.makeBlock('text_print', function(block) {
   // Print statement.
   var argument0 = Blockly.Python.valueToCode(block, 'TEXT',
       Blockly.Python.ORDER_NONE) || '\'\'';
   return 'print(' + argument0 + ')\n';
-};
+});
 
-Blockly.Python['text_prompt_ext'] = function(block) {
+Blockly.Python.makeBlock('text_prompt_ext', function(block) {
   // Prompt function.
   var functionName = Blockly.Python.provideFunction_(
       'text_prompt',
@@ -257,6 +257,6 @@ Blockly.Python['text_prompt_ext'] = function(block) {
     code = 'float(' + code + ')';
   }
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});
 
 Blockly.Python['text_prompt'] = Blockly.Python['text_prompt_ext'];

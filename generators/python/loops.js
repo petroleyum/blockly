@@ -29,7 +29,7 @@ goog.provide('Blockly.Python.loops');
 goog.require('Blockly.Python');
 
 
-Blockly.Python['controls_repeat_ext'] = function(block) {
+Blockly.Python.makeBlock('controls_repeat_ext', function(block) {
   // Repeat n times.
   if (block.getField('TIMES')) {
     // Internal number.
@@ -51,11 +51,11 @@ Blockly.Python['controls_repeat_ext'] = function(block) {
       'count', Blockly.Variables.NAME_TYPE);
   var code = 'for ' + loopVar + ' in range(' + repeats + '):\n' + branch;
   return code;
-};
+});
 
 Blockly.Python['controls_repeat'] = Blockly.Python['controls_repeat_ext'];
 
-Blockly.Python['controls_whileUntil'] = function(block) {
+Blockly.Python.makeBlock('controls_whileUntil', function(block) {
   // Do while/until loop.
   var until = block.getFieldValue('MODE') == 'UNTIL';
   var argument0 = Blockly.Python.valueToCode(block, 'BOOL',
@@ -68,9 +68,9 @@ Blockly.Python['controls_whileUntil'] = function(block) {
     argument0 = 'not ' + argument0;
   }
   return 'while ' + argument0 + ':\n' + branch;
-};
+});
 
-Blockly.Python['controls_for'] = function(block) {
+Blockly.Python.makeBlock('controls_for', function(block) {
   // For loop.
   var variable0 = Blockly.Python.variableDB_.getName(
       block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
@@ -184,9 +184,9 @@ Blockly.Python['controls_for'] = function(block) {
   }
   code += 'for ' + variable0 + ' in ' + range + ':\n' + branch;
   return code;
-};
+});
 
-Blockly.Python['controls_forEach'] = function(block) {
+Blockly.Python.makeBlock('controls_forEach', function(block) {
   // For each loop.
   var variable0 = Blockly.Python.variableDB_.getName(
       block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
@@ -197,9 +197,9 @@ Blockly.Python['controls_forEach'] = function(block) {
       Blockly.Python.PASS;
   var code = 'for ' + variable0 + ' in ' + argument0 + ':\n' + branch;
   return code;
-};
+});
 
-Blockly.Python['controls_flow_statements'] = function(block) {
+Blockly.Python.makeBlock('controls_flow_statements', function(block) {
   // Flow statements: continue, break.
   switch (block.getFieldValue('FLOW')) {
     case 'BREAK':
@@ -208,4 +208,4 @@ Blockly.Python['controls_flow_statements'] = function(block) {
       return 'continue\n';
   }
   throw 'Unknown flow statement.';
-};
+});

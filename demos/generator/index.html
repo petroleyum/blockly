@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Blockly Demo: Generating JavaScript</title>
+  <title>Blockly Demo: Generating Python</title>
   <script src="../../blockly_compressed.js"></script>
   <script src="../../blocks_compressed.js"></script>
-  <script src="../../javascript_compressed.js"></script>
+  <script src="../../python_compressed.js"></script>
   <script src="../../msg/js/en.js"></script>
   <style>
     body {
@@ -20,15 +20,15 @@
 </head>
 <body>
   <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-    <a href="../index.html">Demos</a> &gt; Generating JavaScript</h1>
+    <a href="../index.html">Demos</a> &gt; Generating Python</h1>
 
   <p>This is a simple demo of generating code from blocks.</p>
 
   <p>&rarr; More info on <a href="https://developers.google.com/blockly/installation/code-generators">Code Generators</a>&hellip;</p>
 
   <p>
-    <button onclick="showCode()">Show JavaScript</button>
-    <button onclick="runCode()">Run JavaScript</button>
+    <button onclick="showCode()">Show Python</button>
+    <button onclick="runCode()">Run Python</button>
   </p>
 
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
@@ -120,19 +120,19 @@
                                workspace);
 
     function showCode() {
-      // Generate JavaScript code and display it.
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      // Generate Python code and display it.
+      Blockly.Python.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.Python.workspaceToCode(workspace);
       alert(code);
     }
 
     function runCode() {
-      // Generate JavaScript code and run it.
+      // Generate Python code and run it.
       window.LoopTrap = 1000;
-      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+      Blockly.Python.INFINITE_LOOP_TRAP =
           'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-      var code = Blockly.JavaScript.workspaceToCode(workspace);
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.Python.workspaceToCode(workspace);
+      Blockly.Python.INFINITE_LOOP_TRAP = null;
       try {
         eval(code);
       } catch (e) {

@@ -196,3 +196,16 @@ Blockly.Python.scrub_ = function(block, code) {
   var nextCode = Blockly.Python.blockToCode(nextBlock);
   return commentCode + code + nextCode;
 };
+
+Blockly.Python.makeBlock = function(name, genFunction){
+  Blockly.Python[name] = function(block){
+    var code = genFunction(block);
+    if (Array.isArray(code)) {
+      return code
+    }
+    else{
+      return '#-- Block id number ###' + block.id + '###\n' + code;
+    }
+
+  }
+};

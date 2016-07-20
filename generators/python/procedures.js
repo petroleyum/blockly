@@ -29,7 +29,7 @@ goog.provide('Blockly.Python.procedures');
 goog.require('Blockly.Python');
 
 
-Blockly.Python['procedures_defreturn'] = function(block) {
+Blockly.Python.makeBlock('procedures_defreturn', function(block) {
   // Define a procedure with a return value.
   // First, add a 'global' statement for every variable that is assigned.
   var globals = Blockly.Variables.allVariables(block);
@@ -74,14 +74,14 @@ Blockly.Python['procedures_defreturn'] = function(block) {
   code = Blockly.Python.scrub_(block, code);
   Blockly.Python.definitions_[funcName] = code;
   return null;
-};
+});
 
 // Defining a procedure without a return value uses the same generator as
 // a procedure with a return value.
 Blockly.Python['procedures_defnoreturn'] =
     Blockly.Python['procedures_defreturn'];
 
-Blockly.Python['procedures_callreturn'] = function(block) {
+Blockly.Python.makeBlock('procedures_callreturn', function(block) {
   // Call a procedure with a return value.
   var funcName = Blockly.Python.variableDB_.getName(block.getFieldValue('NAME'),
       Blockly.Procedures.NAME_TYPE);
@@ -92,9 +92,9 @@ Blockly.Python['procedures_callreturn'] = function(block) {
   }
   var code = funcName + '(' + args.join(', ') + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
-};
+});
 
-Blockly.Python['procedures_callnoreturn'] = function(block) {
+Blockly.Python.makeBlock('procedures_callnoreturn', function(block) {
   // Call a procedure with no return value.
   var funcName = Blockly.Python.variableDB_.getName(block.getFieldValue('NAME'),
       Blockly.Procedures.NAME_TYPE);
@@ -105,9 +105,9 @@ Blockly.Python['procedures_callnoreturn'] = function(block) {
   }
   var code = funcName + '(' + args.join(', ') + ')\n';
   return code;
-};
+});
 
-Blockly.Python['procedures_ifreturn'] = function(block) {
+Blockly.Python.makeBlock('procedures_ifreturn', function(block) {
   // Conditionally return value from a procedure.
   var condition = Blockly.Python.valueToCode(block, 'CONDITION',
       Blockly.Python.ORDER_NONE) || 'False';
@@ -120,4 +120,4 @@ Blockly.Python['procedures_ifreturn'] = function(block) {
     code += '  return\n';
   }
   return code;
-};
+});
