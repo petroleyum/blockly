@@ -145,7 +145,7 @@ Blockly.DRAG_NONE = 0;
  * ENUM for inside the sticky DRAG_RADIUS.
  * @const
  */
-Blockly.DRAG_STICKY = 1;
+  Blockly.DRAG_STICKY = 1;
 
 /**
  * ENUM for freely draggable.

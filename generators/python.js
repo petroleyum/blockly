@@ -206,7 +206,7 @@ Blockly.Python.makeBlock = function(name, genFunction){
       return code;
     }
     else{
-      return '#-- Block id number ###' + block.id + '###\n' + code;
+      return 'u.last_block(' + block.id + ')\n' + code;
     }
 
   }
