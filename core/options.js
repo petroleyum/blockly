@@ -81,6 +81,15 @@ Blockly.Options = function(options) {
     toolboxAtStart = true;
   }
 
+  // By default when dragging a block, Blockly will select all following neighbors
+  // singleLine behavior only selects one block at a time, and its inputs, not any following blocks
+  var dragBehavior = options['dragBehavior'];
+  var dragOneGroup = false;
+  if (dragBehavior === 'singleLine') {
+    dragOneGroup = true;
+    Blockly.DRAG_ONE_GROUP = true;
+  }
+
   if (horizontalLayout) {
     var toolboxPosition = toolboxAtStart ?
         Blockly.TOOLBOX_AT_TOP : Blockly.TOOLBOX_AT_BOTTOM;
@@ -122,6 +131,7 @@ Blockly.Options = function(options) {
   this.gridOptions = Blockly.Options.parseGridOptions_(options);
   this.zoomOptions = Blockly.Options.parseZoomOptions_(options);
   this.toolboxPosition = toolboxPosition;
+  this.dragOneGroup = dragOneGroup;
 };
 
 /**

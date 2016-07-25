@@ -28,6 +28,15 @@ goog.provide('Blockly.constants');
 
 
 /**
+ * This is set from Blockly.Options on creation of the workspace
+ * so an value here could be overwritten with an option on Blockly.inject(options)
+ *
+ * When set to true, dragging a block with next neighbors
+ * will not drag any of the next neighbors
+ */
+Blockly.DRAG_ONE_GROUP = false;
+
+/**
  * Number of pixels the mouse must move before a drag starts.
  */
 Blockly.DRAG_RADIUS = 5;

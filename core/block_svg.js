@@ -854,7 +854,7 @@ Blockly.BlockSvg.prototype.onMouseMove_ = function(e) {
       Blockly.longStop_();
       if (this.parentBlock_) {
         // Push this block to the very top of the stack.
-        this.unplug();
+        this.unplug(Blockly.DRAG_ONE_GROUP);
         var group = this.getSvgRoot();
         group.translate_ = 'translate(' + newXY.x + ',' + newXY.y + ')';
         this.disconnectUiEffect();

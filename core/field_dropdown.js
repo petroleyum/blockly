@@ -128,10 +128,6 @@ Blockly.FieldDropdown.prototype.showEditor_ = function() {
   for (var x = 0; x < options.length; x++) {
     var text = options[x][0];  // Human-readable text.
     var value = options[x][1]; // Language-neutral value.
-    var image;
-    if (options[x].length = 3){
-      image = options[x][2];
-    }
     var menuItem = new goog.ui.MenuItem(text);
     menuItem.setRightToLeft(this.sourceBlock_.RTL);
     menuItem.setValue(value);
@@ -139,6 +135,37 @@ Blockly.FieldDropdown.prototype.showEditor_ = function() {
     menu.addChild(menuItem, true);
     menuItem.setChecked(value == this.value_);
 
+    // adding a 3rd parameter to dropdown items for icons.
+    /*
+    e.g. when setting up a block using the json init
+     the first 4 dropdown options also have an image path
+      as the 3rd item in the list for that menu option
+
+    "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "OP",
+          "options": [
+            [Blockly.Msg.MATH_SINGLE_OP_ROOT, 'ROOT', 'highres-logo_20.png'],
+            [Blockly.Msg.MATH_SINGLE_OP_ABSOLUTE, 'ABS', 'highres-logo_20.png'],
+            ['-', 'NEG', 'highres-logo_20.png'],
+            ['ln', 'LN', 'highres-logo_20.png'],
+            ['log10', 'LOG10', 'highres-logo_20.png'],
+            ['e^', 'EXP'],
+            ['10^', 'POW10']
+          ]
+        },
+        {
+          "type": "input_value",
+          "name": "NUM",
+          "check": "Number"
+        }
+      ],
+     */
+    var image;
+    if (options[x].length = 3){
+      image = options[x][2];
+    }
     if(image && menuItem.element_ && menuItem.element_.innerHTML){
 
       var imgHtml = '<div style="right: 20px; position:absolute; height:20px; width:20px;vertical-align: middle;"><img style="margin-bottom:-12px" src="../../media/' + image +'"></div>';
